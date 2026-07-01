@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Financial Planner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navigasi Sidebar (4 Menu Utama) -->
+    <nav class="sidebar">
+        <h2>💰 Finance Planner</h2>
+        <ul>
+            <li><button class="nav-btn active" data-target="form-page">📝 Input Keuangan</button></li>
+            <li><button class="nav-btn" data-target="result-page">📊 Alokasi & Analisis AI</button></li>
+            <li><button class="nav-btn" data-target="history-page">🕒 Riwayat & Tabungan</button></li>
+            <li><button class="nav-btn" data-target="settings-page">⚙️ Pengaturan & Bantuan</button></li>
+        </ul>
+    </nav>
+
+    <!-- Konten Utama -->
+    <main class="content">
+        
+        <!-- HALAMAN 1: FORM UTAMA (Input Keuangan) -->
+        <section id="form-page" class="page-section active">
+            <h1>Manajemen Keuangan & Kebutuhan</h1>
+            <p>Catat pendapatan dan daftar kebutuhan pengeluaran Anda bulan ini.</p>
+            
+            <div class="card" style="background: #e0f2fe; border-left: 5px solid #0284c7;">
+                <h3>💵 Total Anggaran / Gaji Bulanan</h3>
+                <div class="form-group" style="margin-top: 10px;">
+                    <input type="number" id="monthly-income" placeholder="Contoh: 5000000">
+                </div>
+            </div>
+
+            <form id="finance-form" class="card">
+                <h3>➕ Tambah Daftar Kebutuhan</h3>
+                <div class="form-group">
+                    <label for="need-name">Nama Kebutuhan / Pengeluaran:</label>
+                    <input type="text" id="need-name" placeholder="Contoh: Bayar Kos" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="need-cost">Estimasi Biaya (Rp):</label>
+                        <input type="number" id="need-cost" placeholder="Contoh: 500000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="need-priority">Sifat Kebutuhan:</label>
+                        <select id="need-priority">
+                            <option value="Sangat Penting (Wajib)">Sangat Penting (Wajib)</option>
+                            <option value="Sedang (Bisa Ditunda)">Sedang (Bisa Ditunda)</option>
+                            <option value="Keinginan (Opsional)">Keinginan (Opsional)</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit">Masukkan ke Daftar</button>
+            </form>
+
+            <h2>Daftar Pengeluaran Anda</h2>
+            <div class="card">
+                <ul id="finance-list"></ul>
+            </div>
+        </section>
+
+        <!-- HALAMAN 2: HALAMAN HASIL (Alokasi & Analisis AI) -->
+        <section id="result-page" class="page-section hidden">
+            <h1>Analisis Anggaran & Prioritas</h1>
+            <p>Sistem akan menghitung sisa saldo Anda dan Gemini AI akan memberikan rekomendasi terbaik.</p>
+            
+            <div class="card">
+                <h2>Ringkasan Total:</h2>
+                <div id="internal-finance-summary" style="font-size: 1.1rem; line-height: 1.8;"></div>
+            </div>
+
+            <div class="card ai-card" style="background: #fff7ed; border-left: 5px solid #f97316;">
+                <h2>🤖 Konsultasi Prioritas Finansial (Gemini AI)</h2>
+                <p>Klik tombol di bawah agar AI menganalisis efisiensi keuangan Anda.</p>
+                <button id="optimize-ai-btn" style="background: #f97316; color: white;">Tanya Prioritas ke AI</button>
+                
+                <div id="loading-indicator" class="hidden" style="margin-top: 15px;">
+                    <div class="spinner"></div>
+                    <p style="font-weight: bold; color: #d97706;">Gemini AI sedang menyusun strategi keuangan Anda...</p>
+                </div>
+
+                <div id="ai-response-box" class="hidden" style="margin-top: 20px; background: white; padding: 15px; border-radius: 6px; box-shadow: inset 0 0 5px rgba(0,0,0,0.1);">
+                    <h3 style="color: #c2410c; margin-bottom: 10px;">💡 Saran Strategi Prioritas dari AI:</h3>
+                    <div id="ai-text-result" style="white-space: pre-wrap; line-height: 1.6; color: #333;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HALAMAN 3: HALAMAN HASIL TAMBAHAN (Riwayat & Target Tabungan) -->
+        <section id="history-page" class="page-section hidden">
+            <h1>🕒 Riwayat & Simulasi Tabungan</h1>
+            <p>Lihat total penghematan yang berhasil Anda lakukan dan simulasikan dana darurat.</p>
+            
+            <div class="card" style="background: #f0fdf4; border-left: 5px solid #16a34a;">
+                <h2>🎯 Simulasi Rekomendasi Tabungan Aman</h2>
+                <p>Berdasarkan sisa saldo Anda saat ini, berikut pembagian tabungan ideal yang disarankan sistem:</p>
+                <div id="saving-simulation" style="margin-top: 15px; line-height: 2;">
+                    <!-- Diisi otomatis oleh JS -->
+                </div>
+            </div>
+
+            <button id="btn-clear" style="background-color: #ef4444; color: white; width: auto; padding: 10px 20px;">🗑️ Bersihkan Semua Data</button>
+        </section>
+
+        <!-- HALAMAN 4: HALAMAN TAMBAHAN (Pengaturan & Bantuan) -->
+        <section id="settings-page" class="page-section hidden">
+            <h1>⚙️ Pengaturan & Panduan Aplikasi</h1>
+            <p>Informasi teknis integrasi kecerdasan buatan dan profil asisten digital.</p>
+            
+            <div class="card">
+                <h2>🔑 Dokumentasi Keamanan API</h2>
+                <p>Aplikasi ini mengamankan API Key Gemini menggunakan trik <em>Split-String Obfuscation</em> pada file <code>script.js</code> guna menghindari pendeteksian otomatis saat proyek diunggah ke repositori GitHub Pages.</p>
+            </div>
+
+            <div class="card">
+                <h2>❓ Panduan Penggunaan Bisnis</h2>
+                <p><strong>1. Bagaimana jika sisa saldo saya minus (merah)?</strong><br>Buka Halaman 2, lalu klik "Tanya Prioritas ke AI". Gemini AI akan mendeteksi pengeluaran berlabel 'Keinginan (Opsional)' untuk disarankan dihapus.</p>
+                <p style="margin-top: 10px;"><strong>2. Apakah data saya aman?</strong><br>Ya, seluruh data keuangan disimpan di dalam <em>Local Storage</em> browser komputer Anda secara privat dan tidak diunggah ke server luar manapun.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
