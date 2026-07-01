@@ -25,17 +25,35 @@
         <!-- HALAMAN 1: FORM UTAMA (Input Keuangan) -->
         <section id="form-page" class="page-section active">
             <h1>Manajemen Keuangan & Kebutuhan</h1>
-            <p>Catat pendapatan dan daftar kebutuhan pengeluaran Anda bulan ini.</p>
+            <p>Catat pendapatan dan daftar kebutuhan pengeluaran Anda berdasarkan bulan.</p>
             
+            <div class="card" style="background: #f1f5f9; border-left: 5px solid #64748b; margin-bottom: 15px;">
+                <label for="active-month" style="font-weight: bold; color: #334155;">📅 Pilih Periode Bulan:</label>
+                <select id="active-month" style="width: 100%; padding: 10px; border-radius: 4px; margin-top: 5px; font-weight: bold;">
+                    <option value="Januari">Januari</option>
+                    <option value="Februari">Februari</option>
+                    <option value="Maret">Maret</option>
+                    <option value="April">April</option>
+                    <option value="Mei">Mei</option>
+                    <option value="Juni">Juni</option>
+                    <option value="Juli">Juli</option>
+                    <option value="Agustus">Agustus</option>
+                    <option value="September">September</option>
+                    <option value="Oktober">Oktober</option>
+                    <option value="November">November</option>
+                    <option value="Desember">Desember</option>
+                </select>
+            </div>
+
             <div class="card" style="background: #e0f2fe; border-left: 5px solid #0284c7;">
-                <h3>💵 Total Anggaran / Gaji Bulanan</h3>
+                <h3>💵 Total Anggaran / Gaji Bulanan (<span class="text-bulan">Januari</span>)</h3>
                 <div class="form-group" style="margin-top: 10px;">
                     <input type="number" id="monthly-income" placeholder="Contoh: 5000000">
                 </div>
             </div>
 
             <form id="finance-form" class="card">
-                <h3>➕ Tambah Daftar Kebutuhan</h3>
+                <h3>➕ Tambah Kebutuhan Bulan <span class="text-bulan">Januari</span></h3>
                 <div class="form-group">
                     <label for="need-name">Nama Kebutuhan / Pengeluaran:</label>
                     <input type="text" id="need-name" placeholder="Contoh: Bayar Kos" required>
@@ -57,7 +75,7 @@
                 <button type="submit">Masukkan ke Daftar</button>
             </form>
 
-            <h2>Daftar Pengeluaran Anda</h2>
+            <h2>Daftar Pengeluaran Bulan <span class="text-bulan">Januari</span></h2>
             <div class="card">
                 <ul id="finance-list"></ul>
             </div>
